@@ -1,8 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
-// Redux
 import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../redux/Products/thunk';
 import { getProductEdit } from '../../redux/Products/actions';

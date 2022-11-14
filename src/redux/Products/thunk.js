@@ -21,7 +21,6 @@ export function getProducts() {
                 dispatch( setProducts(responseParser.data) )
             }
         } catch (error) {
-            console.log(error);
             dispatch( getProductsError() )
         }
     }
@@ -31,15 +30,17 @@ export function deleteProduct(id) {
     return async (dispatch) => {
         try {
             dispatch(getProductDelete());
-            await fetch(`${BASE_URL}/product/${id}`, { method: 'DELETE'});
-            dispatch(deleteProductSuccess(id));
-            Swal.fire(
-                "Eliminado",
-                "El producto se elimino correctamente",
-                "success"
-            );
+            const response = await fetch(`${BASE_URL}/product/${id}`, { method: 'DELETE'});
+            if(response.status === 204){
+                dispatch(deleteProductSuccess(id));
+                Swal.fire(
+                    "Eliminado",
+                    "El producto se elimino correctamente",
+                    "success"
+                );
+            }
+
         } catch (error) {
-            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Ocurrio un error.',
@@ -52,14 +53,15 @@ export function deleteProduct(id) {
 export function editProduct(data, id) {
     return async (dispatch) => {
         try {
-            await fetch(`${BASE_URL}/product/${id}`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-            Swal.fire(
-                "Editado",
-                "El producto se edito correctamente",
-                "success"
-            );
+            const response = await fetch(`${BASE_URL}/product/${id}`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+            if(response.status === 200 ){
+                Swal.fire(
+                    "Editado",
+                    "El producto se edito correctamente",
+                    "success"
+                );
+            }
         } catch (error) {
-            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Ocurrio un error.',
@@ -71,14 +73,15 @@ export function editProduct(data, id) {
 export function createProduct(data) {
     return async (dispatch) => {
         try {
-            await fetch(`${BASE_URL}/product`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-            Swal.fire(
-                "Creacion",
-                "El producto se creo correctamente",
-                "success"
-            );
+            const response = await fetch(`${BASE_URL}/product`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+            if(response.status === 201){
+                Swal.fire(
+                    "Creacion",
+                    "El producto se creo correctamente",
+                    "success"
+                );
+            }
         } catch (error) {
-            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Ocurrio un error.',

@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { createProduct } from '../../redux/Products/thunk';
-// Redux
 import { useDispatch } from 'react-redux';
 
 const Product = () => {
