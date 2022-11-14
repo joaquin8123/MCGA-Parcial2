@@ -7,9 +7,9 @@ import Header from './shared/Header';
 import Footer from "./shared/Footer";
 
 //components - products
-//import Products from './components/Products';
-// import NewProduct from './components/NewProduct';
-// import EditProduct from './components/EditProduct';
+import Products from './components/Products/Products';
+import NewProduct from './components/Products/NewProduct';
+import EditProduct from './components/Products/EditProduct';
 
 //components - home
 import Home from './components/Home';
@@ -27,9 +27,9 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
-              {/* <Route exact path="/products" component={Products} /> */}
-              {/* <Route exact path="/product/new" component={Products} />
-              <Route exact path="/product/edit/:id" component={Products} /> */}
+              <Route exact path="/products" component={Products} />
+              <Route exact path="/product/edit/:id" component={EditProduct} />
+              <Route exact path="/product/new" component={NewProduct} />
             </Switch>
           </div>
         </div>
